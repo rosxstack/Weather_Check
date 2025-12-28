@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result — Will it rain tomorrow?</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <a href="/" class="back">← New search</a>
+
+    <h1>Tomorrow in <%= placeName %></h1>
+    <p class="muted">Date: <strong><%= tomorrow %></strong></p>
+
+    <section class="card">
+      <h2 class="<%= willRain ? 'yes' : 'no' %>">
+        <%= willRain ? "Yes — likely rain." : "No — rain is unlikely." %>
+      </h2>
+
+      <div class="grid">
+        <div class="stat">
+          <div class="label">Max rain chance</div>
+          <div class="value"><%= precipProbMax ?? "N/A" %><%= precipProbMax !== null ? "%" : "" %></div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Rain total</div>
+          <div class="value"><%= rainSum ?? "N/A" %><%= rainSum !== null ? " mm" : "" %></div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Precip hours</div>
+          <div class="value"><%= precipHours ?? "N/A" %><%= precipHours !== null ? " hrs" : "" %></div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Temp range</div>
+          <div class="value">
+            <%= (tMin !== null && tMax !== null) ? `${tMin}°C – ${tMax}°C` : "N/A" %>
+          </div>
+        </div>
+      </div>
+
+      <p class="muted small">
+        Coordinates used: <%= lat %>, <%= lon %>
+      </p>
+    </section>
+
+    <section class="card">
+      <h3>How this decision is made</h3>
+      <ul class="muted">
+        <li>“Yes” if max rain chance is 50%+ OR rain total is greater than 0 OR precipitation hours is greater than 0.</li>
+        <li>This keeps the result simple, but you can change the rule in <code>index.js</code>.</li>
+      </ul>
+    </section>
+
+    <footer class="footer muted">
+      Data from Open-Meteo (Geocoding + Forecast).
+    </footer>
+  </main>
+</body>
+</html>

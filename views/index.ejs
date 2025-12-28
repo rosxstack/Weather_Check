@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will it rain tomorrow?</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Will it rain tomorrow?</h1>
+    <p class="muted">Search any city/town and get tomorrow’s rain summary.</p>
+
+    <form action="/forecast" method="POST" class="card">
+      <label for="location">Location</label>
+      <input
+        id="location"
+        name="location"
+        placeholder="e.g., Adelaide, London, Tokyo"
+        required
+      />
+      <button type="submit">Check tomorrow</button>
+      <p class="hint">Tip: If it can’t find your place, add a region/country.</p>
+    </form>
+
+    <footer class="footer muted">
+      Data from Open-Meteo (Geocoding + Forecast).
+    </footer>
+  </main>
+</body>
+</html>
